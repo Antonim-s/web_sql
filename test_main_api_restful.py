@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 
-from data import db_session, users_resource, news_resources
+from data import db_session, users_resource, news_resources, jobs_resource
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -19,6 +19,8 @@ def main():
 
     # для одного объекта
     api.add_resource(news_resources.NewsResource, '/api/v2/news/<int:news_id>')
+    api.add_resource(jobs_resource.JobsListResource, '/api/v2/jobs')
+    api.add_resource(jobs_resource.JobsResource, '/api/v2/jobs/<int:job_id>')
 
 
     app.run()
